@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script defer src="signup.js"></script>
+    <title>async-page</title>
+</head>
+<body>
+    <div class="wrap">
+        <header>
+            <div class="contents-inner header-inner">
+                <nav>
+                    <h1>
+                        <a href="#" class="logo__link">
+                            <img src="https://www.tilon.com/web/twcom/imgs/com/asp/main/img_logo.png" alt="logo-colored">
+                            <span class="blind">틸론</span>
+                        </a>
+                    </h1>
+                    <ul class="nav-items">
+                        <li class="nav-item">
+                            <a href="index.html">데이터 파싱</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="board.html">문의 게시판</a>
+                        </li>
+                    </ul>
+                    <ul class="login-items">
+                        <li class="login-item">
+                            <a href="login.html">로그인</a>
+                        </li>
+                        <li class="login-item">
+                            <a href="signup.html">회원가입</a>
+                        </li>
+                    </ul>
+                </nav>
+            </div>
+        </header>
+        <div class="main">
+            <div class="contents-inner main-inner">
+                <div class="signup-box">
+                    <p class="signup-title">회원가입</p>
+                    <fieldset>
+                        <legend class="blind">회원가입</legend>
+                        <form action="#" name="signup_form" class="signup-form">
+                            <label for="name">이름</label>
+                            <input type="text" name="name" id="input_name">
+                            <p id="warnning_name" class="warnning_text"></p>
+                            <label for="id">아이디</label>
+                            <input type="text" name="id" id="input_id">
+                            <p id="warnning_id" class="warnning_text"></p>
+                            <label for="pwd">비밀번호</label>
+                            <input type="password" name="pwd" id="input_pwd">
+                            <p id="warnning_pwd" class="warnning_text"></p>
+                            <label for="pwd_conf">비밀번호 확인</label>
+                            <input type="password" name="pwd_conf" id="input_pwd_conf">
+                            <p id="warnning_pwd_conf" class="warnning_text"></p>
+                            <label for="email">이메일</label>
+                            <input type="email" name="email" id="input_email">
+                            <p id="warnning_email" class="warnning_text"></p>
+                            <button type="button" onclick="signup()" id="submit_btn">회원가입</button>
+                        </form>
+                    </fieldset>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <div class="contents-inner footer-inner">
+                <h2 class="footer-logo">
+                    <img src="https://www.tilon.com/web/twcom/imgs/com/asp/main/img_foot_logo.png" alt="logo-colored">
+                    <span class="blind">틸론</span>
+                </h2>
+                <address>
+                    <p>(c) 2001 ~ 2021. TILON INC. ALL RIGHTS RESERVED.<br>
+                        07789 서울시 강서구 마곡중앙14로 22 (주)틸론<br>
+                        대표전화 : 02 - 2627 - 9000 / FAX : 02 - 2627 - 9099 / 사업자번호 119-81-49757 / <a href="#"><b>[개인정보처리방침]</b></a></p>
+                </address>
+            </div>
+        </footer>
+    </div>
+</body>
+</html>
