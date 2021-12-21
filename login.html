@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script defer src="main.js"></script>
+    <script defer src="/js/login.js"></script>
+    <script defer src="/js/main.js"></script>
     <title>async-page</title>
 </head>
 <body>
@@ -53,7 +54,7 @@
                             <p id="warnning_id" class="warnning_text"></p>
                             <label for="pwd">비밀번호</label>
                             <input type="password" name="pwd" id="input_pwd">
-                            <button type="button" id="submit_btn" class="login-btn">로그인</button>
+                            <button type="button" onclick="login()" id="submit_btn" class="login-btn">로그인</button>
                         </form>
                         <a href="#" class="lost-account login-link">계정 정보를 잊어버리셨습니까?</a>
                         <a href="signup.html" class="sinup-link login-link">회원 가입</a>
