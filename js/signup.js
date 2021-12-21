@@ -14,6 +14,29 @@ function checkId(form) {
 
     return true;
 }
+
+function checkDuplication(){
+    const form = document.signup_form;
+    const existUsers = Object.keys(localStorage);
+
+    for(let i = 0; i < existUsers.length; i++){
+        const key = existUsers[i];
+        const userInfo = JSON.parse(localStorage[key]);
+        if(userInfo.userId == form.id.value){
+            document.getElementById('warnning_id').innerText = "중복된 아이디가 있습니다.";
+            return false;
+        } else if (userInfo.email == form.email.value) {
+            document.getElementById('warnning_email').innerText = "중복된 이메일이 있습니다.";
+            return false;
+        } else {
+            document.getElementById('warnning_id').innerText = "";
+            document.getElementById('warnning_email').innerText = "";
+        }
+    }
+
+    return true;
+}
+
 function checkPassword(form) {
     if (form.pwd.value == "") {
         document.getElementById('warnning_pwd').innerText = "필수 입력사항입니다.";
@@ -21,19 +44,12 @@ function checkPassword(form) {
     }
 
     const password = form.pwd.value;
-    const pwNumber = password.search(/[0-9]/g);
-    console.log(pwNumber);
-    const pwCharacter = password.search(/[a-z]/ig);
-    const pwSpecial = password.search(/[`~!@@#$%^&*|₩₩₩'₩";:₩/?]/gi);
 
-    if (password.length < 8) {
-        document.getElementById('warnning_pwd').innerText = "비밀번호는 최소 8자 이상이어야 합니다";
+    if (!/^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/g.test(password)) {
+        document.getElementById('warnning_pwd').innerText = "영문, 숫자, 특수문자를 최소 1자 이상, 최소 8자 이상 사용해주세요.";
         return false;
     } else if (password.search(/\s/) > -1) {
         document.getElementById('warnning_pwd').innerText = "공백이 포함될 수 없습니다.";
-        return false;
-    } else if (pwNumber < 0 && pwCharacter < 0 && pwSpecial < 0) {
-        document.getElementById('warnning_pwd').innerText = "영문, 숫자, 특수문자를 최소 1자 이상 사용해주세요.";
         return false;
     }
 
@@ -69,8 +85,7 @@ function checkEmail(form) {
     return true;
 }
 
-function signup(){
-    const form = document.signup_form;
+function checkAllValue(form){
     if (checkName(form)){
         document.getElementById('warnning_name').innerText = "";
     }
@@ -86,8 +101,28 @@ function signup(){
     if (checkEmail(form)){
         document.getElementById('warnning_email').innerText = "";
     }
+}
 
-    if (checkName(form) && checkId(form) && checkPassword(form) && checkPasswordConfirm(form) && checkEmail(form)){
-        alert("모든 조건에 충족했습니다.")
+function makeUserData(form){
+    param = {
+        "idx" : localStorage.length+1,
+        "name" : form.name.value,
+        "userId" : form.id.value,
+        "password" : form.pwd.value,
+        "email" : form.email.value
+    }
+
+    return param;
+}
+
+function signup() {
+    const form = document.signup_form;
+    checkAllValue(form);
+    const obj = makeUserData(form);
+
+    if (checkName(form) && checkId(form) && checkPassword(form) && checkPasswordConfirm(form) && checkEmail(form) && checkDuplication()){
+        document.querySelector(".signup-box").style.display = "none";
+        document.querySelector(".signup-complete-box").style.display = "flex";
+        localStorage.setItem(obj.idx, JSON.stringify(obj));
     }
 }
