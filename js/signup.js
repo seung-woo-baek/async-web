@@ -15,6 +15,9 @@ function checkId(form) {
     return true;
 }
 
+const checkDuplicationBtn = document.querySelector(".duplication-btn");
+let cntDuplication = 0;
+checkDuplicationBtn.addEventListener('click', checkDuplication);
 function checkDuplication(){
     const form = document.signup_form;
     const existUsers = Object.keys(localStorage);
@@ -24,13 +27,14 @@ function checkDuplication(){
         const userInfo = JSON.parse(localStorage[key]);
         if(userInfo.userId == form.id.value){
             document.getElementById('warnning_id').innerText = "중복된 아이디가 있습니다.";
+            document.getElementById('warnning_id').style.color = "red";
             return false;
-        } else if (userInfo.email == form.email.value) {
-            document.getElementById('warnning_email').innerText = "중복된 이메일이 있습니다.";
-            return false;
-        } else {
-            document.getElementById('warnning_id').innerText = "";
-            document.getElementById('warnning_email').innerText = "";
+        } else if(form.id.value == "") {
+            document.getElementById('warnning_id').innerText = "아이디를 입력해주세요.";
+        }else {
+            document.getElementById('warnning_id').innerText = "사용 가능한 아이디입니다.";
+            document.getElementById('warnning_id').style.color = "#1a73e8";
+            cntDuplication++;
         }
     }
 
@@ -85,21 +89,27 @@ function checkEmail(form) {
     return true;
 }
 
+let cntCheckedValue = 0;
 function checkAllValue(form){
     if (checkName(form)){
         document.getElementById('warnning_name').innerText = "";
+        cntCheckedValue++;
     }
     if (checkId(form)){
         document.getElementById('warnning_id').innerText = "";
+        cntCheckedValue++;
     }
     if (checkPassword(form)){
         document.getElementById('warnning_pwd').innerText = "";
+        cntCheckedValue++;
     }
     if (checkPasswordConfirm(form)){
         document.getElementById('warnning_pwd_conf').innerText = "";
+        cntCheckedValue++;
     }
     if (checkEmail(form)){
         document.getElementById('warnning_email').innerText = "";
+        cntCheckedValue++;
     }
 }
 
@@ -115,14 +125,20 @@ function makeUserData(form){
     return param;
 }
 
+const signupBtn = document.getElementById("submit_btn");
+signupBtn.addEventListener("click", signup);
 function signup() {
     const form = document.signup_form;
     checkAllValue(form);
     const obj = makeUserData(form);
-
-    if (checkName(form) && checkId(form) && checkPassword(form) && checkPasswordConfirm(form) && checkEmail(form) && checkDuplication()){
+    if (cntDuplication === 0 && form.id.value !== "") {
+        document.getElementById('warnning_id').innerText = "중복 검사를 해주세요.";
+    }
+    if (cntCheckedValue === 5 && cntDuplication > 0) {
         document.querySelector(".signup-box").style.display = "none";
         document.querySelector(".signup-complete-box").style.display = "flex";
         localStorage.setItem(obj.idx, JSON.stringify(obj));
+    } else {
+        return;
     }
 }
