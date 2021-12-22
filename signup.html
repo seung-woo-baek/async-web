@@ -23,10 +23,10 @@
                     </h1>
                     <ul class="nav-items">
                         <li class="nav-item">
-                            <a href="index.html">데이터 파싱</a>
+                            <a href="index.html">HOME</a>
                         </li>
                         <li class="nav-item">
-                            <a href="board.html">문의 게시판</a>
+                            <a href="notice.html">공지사항</a>
                         </li>
                     </ul>
                     <ul class="login-items">
@@ -42,8 +42,8 @@
         </header>
         <div class="main">
             <div class="contents-inner main-inner">
-                <div class="signup-box">
-                    <p class="signup-title">회원가입</p>
+                <div class="main-container">
+                    <p class="main-title">회원가입</p>
                     <fieldset>
                         <legend class="blind">회원가입</legend>
                         <form action="#" name="signup_form" class="signup-form">
@@ -51,9 +51,9 @@
                             <input type="text" name="name" id="input_name">
                             <p id="warnning_name" class="warnning_text"></p>
                             <label for="id">아이디</label>
-                            <div class="id-box">
+                            <div class="duplication-box">
                                 <input type="text" name="id" id="input_id">
-                                <button type="button" onclick="checkDuplication()" class="duplication-btn">중복 검사</button>
+                                <button type="button" class="duplication-btn">중복 검사</button>
                             </div>
                             <p id="warnning_id" class="warnning_text"></p>
                             <label for="pwd">비밀번호</label>
@@ -63,12 +63,9 @@
                             <input type="password" name="pwd_conf" id="input_pwd_conf">
                             <p id="warnning_pwd_conf" class="warnning_text"></p>
                             <label for="email">이메일</label>
-                            <div class="email-box">
-                                <input type="email" name="email" id="input_email">
-                                <button type="button" onclick="checkDuplication()" class="duplication-btn">중복 검사</button>
-                            </div>
+                            <input type="email" name="email" id="input_email">
                             <p id="warnning_email" class="warnning_text"></p>
-                            <button type="button" onclick="signup()" id="submit_btn">회원가입</button>
+                            <button type="button" id="submit_btn">회원가입</button>
                         </form>
                     </fieldset>
                 </div>
