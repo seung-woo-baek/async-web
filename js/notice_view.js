@@ -11,8 +11,9 @@ function getBoardData(){
     fetch(url)
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             document.getElementById("post_title").innerText = res.Subject;
             document.getElementById("post_content").innerText = res.Contents;
+            document.getElementById("post_reg").innerText = res.RegDay;
+            document.getElementById("post_readcnt").innerText = res.ReadCnt;
         })
 }
