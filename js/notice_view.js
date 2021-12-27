@@ -12,7 +12,7 @@ function getBoardData(){
         .then(res => res.json())
         .then(res => {
             document.getElementById("post_title").innerText = res.Subject;
-            document.getElementById("post_content").innerText = res.Contents;
+            document.getElementById("post_content").innerHTML = res.Contents;
             document.getElementById("post_reg").innerText = res.RegDay;
             document.getElementById("post_readcnt").innerText = res.ReadCnt;
         })
