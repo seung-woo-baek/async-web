@@ -3,22 +3,22 @@ window.onload = function(){
     // getAllData();
 }
 
-let baseURI = `https://127.0.0.1:5050/notice.html/`
-function addBoardList(item){
+function addBoardList(item, idx){
     const boardList = document.querySelector('.board-items');
-    if(document.querySelector('.board-item') != null){
-        boardList.insertAdjacentHTML('beforeend', `<li class="board-item board-body" id="no${item.boardseq}">
-                <p class="notice-idx">${item.boardseq}</p>
-                <p class="notice-title">${item.subject}</p>
-                <p class="notice-reg">${item.regday}</p>
-                <p class="notice-readcnt">${item.readcnt}</p>
-            </li>`)
-    } else {
-        boardList.insertAdjacentHTML('beforeend', `<li class="board-item board-body">
-                <p class="notice-title">등록된 공지사항이 없습니다.</p>
-            </li>`)
+    const boarditem = document.querySelector(`.board-item:nth-child(${idx + 2})`)
+    boarditem.setAttribute('id', `no${item.boardseq}`);
+    document.querySelector(`.board-item:nth-child(${idx + 2}) .notice-idx`).innerHTML = item.boardseq;
+    document.querySelector(`.board-item:nth-child(${idx + 2}) .notice-title`).innerHTML = item.subject;
+    document.querySelector(`.board-item:nth-child(${idx + 2}) .notice-reg`).innerHTML = item.regday;
+    document.querySelector(`.board-item:nth-child(${idx + 2}) .notice-readcnt`).innerHTML = item.readcnt;
+    
+}
 
-    }
+function addEmptyBoardList(){
+    const board = document.querySelector('.board-items')
+    board.insertAdjacentHTML('beforeend', `<li class="board-empty">
+            <p>등록된 공지사항이 없습니다.</p>
+        </li>`);
 }
 
 function getData(){
@@ -28,10 +28,15 @@ function getData(){
         .then(res => res.json())
         .then(res => {
             console.log(res);
-            for(let i = 0; i < res.length; i++){
-                addBoardList(res[i]);
-                addLinkForList(res[i]);
-            }
+            res.forEach(item => {
+                const idx =res.indexOf(item);
+                if(res.length > 0){
+                    addBoardList(item, idx);
+                } else {
+                    addEmptyBoardList();
+                }
+                addLinkForList(item);
+            })
         })
         .catch(error => {
             alert("데이터를 불러오는데에 오류가 발생했습니다.")
