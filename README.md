@@ -75,7 +75,7 @@
 - 웹 문서에서 사용되는 다국어 인코딩, 즉 UTF-8 유니코드에서는 한글이나 한자는 3바이트
 - URI가 서버가 처리 할 수 있는 거보다 길면 서버는 414 에러를 반환해야한다.
 - Lorem Ipsum의 500단어, 3307바이트를 데이터로 넣었을 때 404 에러 발생
-<img src="../screenshots/get_error.png"></img>
+
 
 - CORS 같은 경우에는 해더값에 Access-Control-Allow-Origin을 추가해 해결이 가능하나, 여전히 길이가 긴 데이터를 보낼 경우 같은 에러가 발생
 - lorem ipsum을 통해 다양한 길이의 데이터를 넣어보았고 1484바이트 이상의 데이터 부터는 404 에러를 받는다.
@@ -83,8 +83,8 @@
 - 서버의 용량 제한이 있지 않은가 생각 중
 
 2. textarea value를 그대로 저장하게 되면 엔터 처리가 무시된 한줄의 입력값을 받는다.
-- '\n'(줄 바꿈) 혹은 '\r\n'(커서를 맨 앞으로 이동시킨 뒤 줄바꿈)인 경우에 '<br>'로 처리한다.
+- '\n'(줄 바꿈) 혹은 '\r\n'(커서를 맨 앞으로 이동시킨 뒤 줄바꿈)인 경우에 br 태그로 처리한다.
     let contentValue = form.notice_write_content.value;
-    contentValue = contentValue.replace(/(\n:\r\n)/g, '<br>')
-- '<br>'이 입력되지만 넘겨지지 않는다.
+    contentValue = contentValue.replace(/(\n:\r\n)/g, 'br태그')
+- br태그가 입력되지만 넘겨지지 않는다.
 - innerText로 보여지던 글을 innerHTML로 변경해 해결
