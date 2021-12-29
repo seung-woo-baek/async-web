@@ -1,6 +1,7 @@
-const writeBtn = document.getElementById('write_btn');
-writeBtn.addEventListener('click', sendPostData);
-
+(function addEventWrite(){
+    const writeBtn = document.getElementById('write_btn');
+    writeBtn.addEventListener('click', sendPostData);
+})
 
 function getPostData() {
     const form = document.notice_form;
@@ -18,7 +19,7 @@ function sendPostData() {
     fetch(url).then(res => {
         if(res.ok){
             alert("등록이 완료되었습니다.");
-            location.href = "/notice.html";
+            location.href = "notice.html";
         } else {
             alert("등록에 실패하였습니다.")
             console.error(`HTTP Status Code : ${res.status}`);
