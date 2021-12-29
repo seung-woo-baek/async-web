@@ -5,9 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script type="text/javascript" src="/data/user.json"></script>
-    <script defer src="/js/main.js"></script>
-    <script defer src="/js/signup.js"></script>
+    <script defer src="js/main.js"></script>
+    <script defer src="js/signup.js"></script>
     <title>async-page</title>
 </head>
 <body>
@@ -29,12 +28,23 @@
                             <a href="notice.html">공지사항</a>
                         </li>
                     </ul>
-                    <ul class="login-items">
+                    <ul class="login-items" id="login">
                         <li class="login-item">
                             <a href="login.html">로그인</a>
                         </li>
                         <li class="login-item">
                             <a href="signup.html">회원가입</a>
+                        </li>
+                    </ul>
+                    <ul class="login-items" id="logout">
+                        <li class="login-item">
+                            <span id="user_id"></span>
+                        </li>
+                        <li class="login-item">
+                            <a href="index.html" id="logout_link">로그아웃</a>
+                        </li>
+                        <li class="login-item">
+                            <a href="user.html">회원정보</a>
                         </li>
                     </ul>
                 </nav>

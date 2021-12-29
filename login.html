@@ -5,8 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script defer src="/js/login.js"></script>
-    <script defer src="/js/main.js"></script>
+    <script defer src="js/login.js"></script>
+    <script defer src="js/main.js"></script>
     <title>async-page</title>
 </head>
 <body>
@@ -28,12 +28,23 @@
                             <a href="notice.html">공지사항</a>
                         </li>
                     </ul>
-                    <ul class="login-items">
+                    <ul class="login-items" id="login">
                         <li class="login-item">
                             <a href="login.html">로그인</a>
                         </li>
                         <li class="login-item">
                             <a href="signup.html">회원가입</a>
+                        </li>
+                    </ul>
+                    <ul class="login-items" id="logout">
+                        <li class="login-item">
+                            <span id="user_id"></span>
+                        </li>
+                        <li class="login-item">
+                            <a href="index.html" id="logout_link">로그아웃</a>
+                        </li>
+                        <li class="login-item">
+                            <a href="user.html">회원정보</a>
                         </li>
                     </ul>
                 </nav>
@@ -54,7 +65,7 @@
                             <p id="warnning_id" class="warnning_text"></p>
                             <label for="pwd">비밀번호</label>
                             <input type="password" name="pwd" id="input_pwd">
-                            <button type="button" onclick="login()" id="submit_btn" class="login-btn">로그인</button>
+                            <button type="button" id="submit_btn" class="login-btn">로그인</button>
                         </form>
                         <a href="#" class="lost-account login-link">계정 정보를 잊어버리셨습니까?</a>
                         <a href="signup.html" class="sinup-link login-link">회원 가입</a>

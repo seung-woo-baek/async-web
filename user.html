@@ -5,7 +5,8 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
-    <script defer src="main.js"></script>
+    <script defer src="js/user_info.js"></script>
+    <script defer src="js/main.js"></script>
     <title>async-page</title>
 </head>
 <body>
@@ -27,12 +28,23 @@
                             <a href="notice.html">공지사항</a>
                         </li>
                     </ul>
-                    <ul class="login-items">
+                    <ul class="login-items" id="login">
                         <li class="login-item">
                             <a href="login.html">로그인</a>
                         </li>
                         <li class="login-item">
                             <a href="signup.html">회원가입</a>
+                        </li>
+                    </ul>
+                    <ul class="login-items" id="logout">
+                        <li class="login-item">
+                            <span id="user_id"></span>
+                        </li>
+                        <li class="login-item">
+                            <a href="index.html" id="logout_link">로그아웃</a>
+                        </li>
+                        <li class="login-item">
+                            <a href="user.html">회원정보</a>
                         </li>
                     </ul>
                 </nav>
@@ -57,7 +69,7 @@
                         </div>
                     </div>
                     <div class="user-info-btns">
-                        <button type="button" id="change_password_btn">비밀번호 변경</button>
+                        <button type="button" id="modal_btn">비밀번호 변경</button>
                         <button type="button" id="withdraw_btn">회원탈퇴</button>
                     </div>
                 </div>
@@ -76,6 +88,27 @@
                 </address>
             </div>
         </footer>
+    </div>
+    <div id="modal" class="modal-overay">
+        <div class="modal-window">
+            <div class="modal-header">
+                <h2 class="modal-title">
+                    비밀번호 변경
+                </h2>
+                <div class="modal-close">X</div>
+            </div>
+            <div class="modal-body">
+                <form action="#" name="change_form" id="change_form">
+                    <label for="currentPassword">현재 비밀번호</label>
+                    <input type="password" name="currentPassword" class="current_pwd">
+                    <label for="newPassword">새 비밀번호</label>
+                    <input type="password" name="newPassword" class="new_pwd">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="change_password_btn">비밀번호 변경하기</button>
+            </div>
+        </div>
     </div>
 </body>
 </html>
