@@ -1,8 +1,4 @@
-window.onload = function(){
-    getBoardData();
-}
-
-function getBoardData(){
+(function getBoardData(){
     const search = location.search;
     const param = new URLSearchParams(search);
     const getId = param.get('id');
@@ -16,4 +12,4 @@ function getBoardData(){
             document.getElementById("post_reg").innerText = res.RegDay;
             document.getElementById("post_readcnt").innerText = res.ReadCnt;
         })
-}
+})();
