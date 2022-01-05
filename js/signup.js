@@ -6,6 +6,13 @@
     signupBtn.addEventListener("click", signup);
 })();
 
+(function checkLoggedIn(){
+    const userInfo = JSON.parse(sessionStorage.getItem('currentLogin'));
+    if(userInfo !== null){
+        location.href = "index.html";
+    }
+})();
+
 function checkName(form) {
     if (form.name.value == "") {
         document.getElementById('warnning_name').innerText = "필수 입력사항입니다.";
