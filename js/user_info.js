@@ -1,23 +1,31 @@
-window.addEventListener('load', () => {
+import User from '/js/main.js';
+
+(function main(){
+    const user = getUserObj();
+    showUserData(user);
+    addEventToBtns(user);
+})();
+
+function getUserObj(){
     const userInfo = JSON.parse(sessionStorage.getItem('currentLogin'));
-
     if(checkLoggedIn(userInfo)){
-        showUserData(userInfo);
+        const user = new User(userInfo);
+        return user;
     }
-})
+}
 
-(function addEventToBtns(){
+function addEventToBtns(user){
     const withdrawBtn = document.getElementById('withdraw_btn');
     const changePwdBtn = document.getElementById('change_password_btn');
 
     withdrawBtn.addEventListener('click', event => {
-        withdraw(userInfo);
+        withdraw(user);
     })
     changePwdBtn.addEventListener('click', event => {
-        changePassword(userInfo);
+        changePassword(user);
         location.href = "login.html";
     })
-})();
+}
 
 (function activateModalBtns(){
     const modal = document.getElementById("modal")
@@ -42,17 +50,18 @@ function checkLoggedIn(userInfo){
     return true;
 }
 
-function showUserData(userInfo){
-    document.querySelector(".user-name").innerText = userInfo.name;
-    document.querySelector(".user-id").innerText = userInfo.userId;
-    document.querySelector(".user-email").innerText = userInfo.email;
+function showUserData(user){
+    document.querySelector(".user-name").innerText = user.name;
+    document.querySelector(".user-id").innerText = user.userId;
+    document.querySelector(".user-email").innerText = user.email;
 }
 
-function withdraw(userInfo){
+function withdraw(user){
+    console.log(user);
     const xhr = new XMLHttpRequest();
     const url = '';
     const method = 'POST';
-    const data = { "userId" : userInfo.userId }
+    const data = { "userId" : user.userId }
 
     xhr.onreadystatechange = () => {
         if(xhr.readyState === xhr.DONE && xhr.status >= 200 && xhr.status <= 400){
@@ -71,7 +80,7 @@ function withdraw(userInfo){
     xhr.send(JSON.stringify(data));
 }
 
-function changePassword(userInfo){
+function changePassword(){
     const form = document.change_form;
     const xhr = new XMLHttpRequest();
     const url = '';
