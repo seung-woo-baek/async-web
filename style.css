@@ -95,7 +95,10 @@ nav{position: relative; display: flex; align-items: center; width: 100%;}
 .login-logo{margin: 30px 0;}
 .login_form{display: flex; flex-direction: column; width: 300px; padding-top: 30px;}
 .login_form label{font-weight: 500;}
-.login_form input{margin-bottom: 30px;}
+.login_form #input_id{margin-bottom: 30px;}
+.login_form .save-checkbox{display: flex; align-items: center;  padding: 5px; margin-bottom: 20px;}
+.login_form .save-checkbox label{font-size: 12px; font-weight: 400;}
+.login_form .save-checkbox input{height: 15px;}
 .login_form .login-btn{height: 40px; border: none; border-radius: 5px; background-color: #eb6501; color: #fff; font-size: 18px; font-weight: 600; cursor: pointer;}
 .login-link{margin-top: 30px; color: #999;}
 .login-link:hover{color: #000;}
