@@ -4,7 +4,6 @@
     fetch(url)
         .then(res => res.json())
         .then(res => {
-            console.log(res);
             res.forEach(item => {
                 const idx =res.indexOf(item);
                 if(res.length > 0){
