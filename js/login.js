@@ -1,7 +1,22 @@
-(function addEventToBtns(){
+(function addEventLogin(){
     const loginBtn = document.querySelector('#submit_btn');
     loginBtn.addEventListener('click', login)
-    // loginBtn.addEventListener('click', loginXhr)
+})();
+
+(function checkLoggedIn(){
+    const userInfo = JSON.parse(sessionStorage.getItem('currentLogin'));
+    if(userInfo !== null){
+        location.href = "index.html";
+    }
+})();
+
+(function showSavedData(){
+    const form = document.login_form;
+    const savedInfo = JSON.parse(localStorage.getItem('savedUser'));
+    if(savedInfo !== null){
+        form.id.value = savedInfo.userId;
+        form.pwd.value = savedInfo.password;
+    }
 })();
 
 function checkId(form) {
@@ -42,8 +57,10 @@ async function login(){
     userData.forEach(item => {
         if(item.userId === form.id.value && item.password === form.pwd.value){
             sessionStorage.setItem('currentLogin', JSON.stringify(item));
+            if(form.save.checked){
+                localStorage.setItem('savedUser', JSON.stringify(item));
+            }
             loginMatch += 'matched';
-            return;
         } 
     })
 
